@@ -204,9 +204,12 @@ commit_parser = "angular"
 logging_use_named_masks = false
 major_on_zero = true
 tag_format = "v{version}"
+
 version_toml = [
     "pyproject.toml:tool.poetry.version",
 ]
+
+build_command = "poetry build"
 
 [tool.semantic_release.branches.main]
 match = "(main|master)"
@@ -278,6 +281,14 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: python -m pip install poetry
 
     - name: Python Semantic Release
       uses: python-semantic-release/python-semantic-release@master
