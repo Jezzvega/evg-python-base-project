@@ -43,6 +43,8 @@ inicializamos git en la rama ``main``
 git init -b main
 ```
 
+y agregamos un ``.gitignore`` de https://www.toptal.com/developers/gitignore
+
 ## Agregamos codigo
 
 Creamos dos archivos:
@@ -90,9 +92,62 @@ Estas son algunas herramientas que nos ayudaran a tener un codigo bonito, legibl
 
 ### ruff
 
+An extremely fast Python linter and code formatter, written in Rust.
+
+Contiene isort, black y flake8
+
+```bash
+ruff check .
+ruff check --fix .
+ruff format .
+```
+
 ### mypy
 
+Mypy is a static type checker for Python.
+
+```bash
+mypy .
+```
+
+Pero aun con todas estas herramientas los desarrolladores nos lincharian al agregarles un paso extra a su flujo de trabajo.
+
+Asi que trataremos de automatizar las cosas aun más!
+
 ## pre-commit
+
+A framework for managing and maintaining multi-language pre-commit hooks.
+
+### Instalación
+
+```bash
+poetry add pre-commit --group dev
+```
+
+### Configuración
+
+creamos un archivo llamado ``.pre-commit-config.yaml`` y agregamos la siguiente configuracion:
+
+```yml
+repos:
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+    - id: ruff
+      args: [ --fix ]
+    - id: ruff-format
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.1
+    hooks:
+    - id: mypy
+      args: [--disallow-untyped-calls]
+```
+
+e instalamos los hooks:
+
+```bash
+pre-commit install
+```
 
 ## first commit
 
