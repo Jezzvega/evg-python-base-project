@@ -209,7 +209,7 @@ version_toml = [
     "pyproject.toml:tool.poetry.version",
 ]
 
-build_command = "poetry build"
+build_command = "pip install poetry && poetry build"
 
 [tool.semantic_release.branches.main]
 match = "(main|master)"
