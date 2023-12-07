@@ -282,14 +282,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        
-    - name: Install dependencies
-      run: python -m pip install poetry
-
     - name: Python Semantic Release
       uses: python-semantic-release/python-semantic-release@master
       with:
