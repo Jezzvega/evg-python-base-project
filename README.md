@@ -46,7 +46,7 @@ git init -b main
 pusheamos a github
 
 ```bash
-git remote add origin https://github.com/Jezzvega/python-meetup-39.git
+git remote add origin <your-repo-url>
 ```
 
 y agregamos un ``.gitignore`` de https://www.toptal.com/developers/gitignore
